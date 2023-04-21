@@ -1,0 +1,105 @@
+# # ##기본 모델
+# # 5계층 모델
+# model = keras.models.Sequential([
+#     keras.layers.Conv2D(input_shape = (128, 128, 3),
+#                         kernel_size = (3,3), padding ='same',
+#                         filters = 32, activation= 'relu'),
+#     keras.layers.MaxPooling2D(pool_size=(2, 2), strides=2, padding='same'),
+#     keras.layers.Dropout(.2),
+#     keras.layers.Conv2D(kernel_size = (3,3), padding ='same',
+#                         filters = 64),
+#     keras.layers.MaxPooling2D(pool_size=(2, 2), strides=2, padding='same'),
+#     keras.layers.Conv2D(kernel_size = (3,3), padding ='same',
+#                         filters = 32),
+#     keras.layers.Flatten(),
+#     keras.layers.Dense(128, activation = 'relu'),
+#     keras.layers.Dropout(.2),
+#     keras.layers.Dense(32, activation= 'relu'),
+#     keras.layers.Dense(1, activation='sigmoid'),
+# ])
+
+# VGG16net model
+# model = keras.models.Sequential([
+#     #block 1
+#     keras.layers.Conv2D(input_shape = (128, 128, 3),
+#                         kernel_size = (3,3), padding ='same',
+#                         filters = 64),
+#     keras.layers.Conv2D(filters=64, kernel_size=(3, 3), 
+#                         strides=(1, 1), padding='same', 
+#                         activation='relu'),
+#     keras.layers.MaxPooling2D(pool_size=(2, 2), strides=2, padding='same'),
+#     #block 2
+#     keras.layers.Conv2D(filters=128, kernel_size=(3, 3), padding='same'),
+#     keras.layers.Conv2D(filters=128, kernel_size=(3, 3), padding='same'),
+#     keras.layers.MaxPooling2D(pool_size=(2, 2), strides=2, padding='same'),
+#     #block 3
+#     keras.layers.Conv2D(filters=256, kernel_size=(3, 3), padding='same'),
+#     keras.layers.Conv2D(filters=256, kernel_size=(3, 3), padding='same'),
+#     keras.layers.Conv2D(filters=256, kernel_size=(3, 3), padding='same'),
+#     keras.layers.MaxPooling2D(pool_size=(2, 2), strides=2, padding='same'),
+#     #block 4
+#     keras.layers.Conv2D(filters=512, kernel_size=(3, 3), padding='same'),
+#     keras.layers.Conv2D(filters=512, kernel_size=(3, 3), padding='same'),
+#     keras.layers.Conv2D(filters=512, kernel_size=(3, 3), padding='same'),
+#     keras.layers.MaxPooling2D(pool_size=(2, 2), strides=2, padding='same'),
+#     #block 5
+#     keras.layers.Conv2D(filters=512, kernel_size=(3, 3), padding='same'),
+#     keras.layers.Conv2D(filters=512, kernel_size=(3, 3), padding='same'),
+#     #classification
+#     keras.layers.Flatten(),
+#     keras.layers.Dense(4096, activation = 'relu'),
+#     keras.layers.Dropout(0.5),
+#     keras.layers.Dense(2048, activation= 'relu'),
+#     keras.layers.Dropout(0.5),
+#     keras.layers.Dense(1024, activation= 'relu'),
+#     keras.layers.Dense(1, activation='sigmoid'),
+# ])
+
+# Alexnet 모델 8계층
+# model = keras.models.Sequential({
+#    keras.layers.Conv2D(input_shape = (128, 227, 3), kernel_size = (11,11), padding ='same', filters = 96, strides=(4,4), activation='relu'),
+#    keras.layers.MaxPooling2D(pool_size=(3, 3), strides=2, padding='same'),
+
+#    keras.layers.Conv2D(kernel_size = (5, 5), filters=256, activation='relu'),
+#    keras.layers.MaxPooling2D(pool_size=(2, 2), strides=2),
+
+#    keras.layers.Conv2D(kernel_size = (3, 3), filters=384, activation='relu'),
+#    keras.layers.Conv2D(kernel_size = (3, 3), filters=384, activation='relu'),
+#    keras.layers.Conv2D(kernel_size = (3, 3), filters=256, activation='relu'),
+#    keras.layers.MaxPooling2D(pool_size=(3, 3), strides=2),
+
+#    keras.layers.Flatten(),
+#    keras.layers.Dense(4096, activation = 'relu'),
+#    keras.layers.Dropout(0.5),
+#    keras.layers.Dense(2048, activation = 'relu'),
+#    keras.layers.Dropout(0.5),
+#    keras.layers.Dense(1, activation = 'sigmoid')
+# })
+
+# # 시각화 함수
+# def vi_d(p_img, n_img):
+#     figure = plt.figure()
+#     count = 0
+    
+#     for i in range(p_img.shape[0]):
+#         count+=1
+#         figure.add_subplot(2, p_img.shape[0], count)
+#         plt.imshow(p_img[i,:,:])
+#         plt.axis('off')
+#         plt.title('1')
+        
+#         figure.add_subplot(1, n_img.shape[0], count)
+#         plt.imshow(n_img[i,:,:])
+#         plt.axis('off')
+#         plt.title('0')
+#     plt.show()
+
+# p_img = (train_labels == 1)
+# p_imgs = train_images[p_img,:,:]
+# p_imgs = p_imgs[0:10,:,:]
+
+# n_img = (train_labels == 0)
+# n_imgs = train_images[n_img,:,:]
+# n_imgs = n_imgs[0:10,:,:]
+
+# vi_d(p_imgs, n_imgs)
